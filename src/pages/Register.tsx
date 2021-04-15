@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import React, { useState } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -11,11 +11,11 @@ import {
   OutlinedInput,
   InputLabel,
   FormControl,
-} from '@material-ui/core'
-import { Visibility, VisibilityOff } from '@material-ui/icons'
-import { useForm } from 'react-hook-form'
-import { Redirect } from 'react-router-dom'
-import { publicFetch } from '../utils/fetch'
+} from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
+import { Redirect } from 'react-router-dom';
+import { publicFetch } from '../utils/fetch';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,30 +61,30 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '1rem 0rem',
     },
   })
-)
+);
 
 interface FormData {
-  name: string
-  username: string
-  email: string
-  password: string
-  confirmPassword: string
-  termsAndConditionChecked: boolean
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  termsAndConditionChecked: boolean;
 }
 
 const Register = () => {
-  const [loading, setLoading] = useState(false)
-  const [redirectAfterRegisteration, setRedirectAfterRegisteration] = useState(false)
-  const [registerationStatus, setRegisterationStatus] = useState('')
-  const [registerationStatusCode, setRegisterationStatusCode] = useState(0)
+  const [loading, setLoading] = useState(false);
+  const [redirectAfterRegisteration, setRedirectAfterRegisteration] = useState(false);
+  const [registerationStatus, setRegisterationStatus] = useState('');
+  const [registerationStatusCode, setRegisterationStatusCode] = useState(0);
 
-  const { register, handleSubmit, errors } = useForm<FormData>()
-  const { container, form, submitButton, error, emailverify, textField, success } = useStyles()
+  const { register, handleSubmit, errors } = useForm<FormData>();
+  const { container, form, submitButton, error, emailverify, textField, success } = useStyles();
 
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [termsAndConditionChecked, setTermsAndConditions] = useState(false)
-  const [verifyEmail, setVerifyEmail] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [termsAndConditionChecked, setTermsAndConditions] = useState(false);
+  const [verifyEmail, setVerifyEmail] = useState('');
 
   const onSubmit = async (data: FormData) => {
     const custData = {
@@ -93,36 +93,36 @@ const Register = () => {
       email: data.email,
       password: data.password,
       termsAndConditionChecked,
-    }
+    };
 
     try {
       if (data.password === data.confirmPassword) {
-        setRegisterationStatus('Password match. Go ahead and register!!')
-        setRegisterationStatusCode(200)
+        setRegisterationStatus('Password match. Go ahead and register!!');
+        setRegisterationStatusCode(200);
       } else {
-        throw new Error("Password don't match.!!")
+        throw new Error("Password don't match.!!");
       }
-      setLoading(true)
-      const response = await publicFetch.post('users/register', custData)
-      console.log(response) // eslint-disable-line no-console
+      setLoading(true);
+      const response = await publicFetch.post('users/register', custData);
+      console.log(response); // eslint-disable-line no-console
 
       if (response && response.data) {
-        setVerifyEmail(response.data.verify_link)
-        setRegisterationStatus(response.data.message)
+        setVerifyEmail(response.data.verify_link);
+        setRegisterationStatus(response.data.message);
       }
-      setLoading(false)
+      setLoading(false);
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
 
       if (err.response !== undefined) {
-        setRegisterationStatus(err.response.data.message)
-        setRegisterationStatusCode(err.response.data.status)
+        setRegisterationStatus(err.response.data.message);
+        setRegisterationStatusCode(err.response.data.status);
       } else if (err.message !== undefined) {
-        setRegisterationStatus(err.message)
-        setRegisterationStatusCode(450)
+        setRegisterationStatus(err.message);
+        setRegisterationStatusCode(450);
       }
     }
-  }
+  };
   return (
     <>
       {redirectAfterRegisteration ? <Redirect to="/" /> : null}
@@ -206,10 +206,7 @@ const Register = () => {
                 fullWidth
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
+                    <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)}>
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
@@ -279,7 +276,7 @@ const Register = () => {
         </form>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

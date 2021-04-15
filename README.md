@@ -98,6 +98,22 @@ To get the frontend running locally:
 
 ## Contributing
 
+### Lint & Format
+
+This repository using [Eslint](https://eslint.org/docs/user-guide/getting-started) and [Prettier](https://prettier.io/docs/en/index.html) for linting code and formatting source code.
+
+#### To Run ESlint
+
+You may use `npm` or `yarn` for this
+
+`npm run lint` : For lint your code.
+
+`npm run lint:fix` : For lint and as well as it fixes errors.
+
+#### To Format Files:
+
+`npm run format`
+
 **This project is under active development**
 
 Please read our [Contributing Guidelines](.github/CONTRIBUTING_GUIDELINES.md), [Code of Conduct](.github/CODE_OF_CONDUCT.md) and [Reporting Guidelines](.github/REPORTING_GUIDLINES.md) thoroughly.

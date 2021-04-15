@@ -1,9 +1,9 @@
-import React from 'react'
-import { AppBar, Toolbar, makeStyles } from '@material-ui/core'
-import { Link, useHistory } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import logo from '../assets/logo.png'
-import { useAuth } from '../context/AuthContext'
+import React from 'react';
+import { AppBar, Toolbar, makeStyles } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import logo from '../assets/logo.png';
+import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -24,17 +24,17 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     padding: theme.spacing(1, 2),
   },
-}))
+}));
 
 const Navbar = () => {
-  const { header, nav, navButton, navLink } = useStyles()
-  const auth = useAuth()
-  const history = useHistory()
+  const { header, nav, navButton, navLink } = useStyles();
+  const auth = useAuth();
+  const history = useHistory();
 
   const handleLogout = () => {
-    auth.logout()
-    history.push('/login')
-  }
+    auth.logout();
+    history.push('/login');
+  };
 
   return (
     <AppBar position="sticky" className={header}>
@@ -58,7 +58,7 @@ const Navbar = () => {
         )}
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

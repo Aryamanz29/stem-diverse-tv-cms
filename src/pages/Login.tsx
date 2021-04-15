@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import React, { useState } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -8,13 +8,13 @@ import {
   OutlinedInput,
   FormControl,
   InputLabel,
-} from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
-import { Redirect } from 'react-router-dom'
-import { Visibility, VisibilityOff } from '@material-ui/icons'
-import { useForm } from 'react-hook-form'
-import { publicFetch } from '../utils/fetch'
-import { useAuth } from '../context/AuthContext'
+} from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { Redirect } from 'react-router-dom';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
+import { publicFetch } from '../utils/fetch';
+import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,28 +48,28 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '1rem 0rem',
     },
   })
-)
+);
 
 interface FormData {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const [redirectAfterLogin, setRedirectAfterLogin] = useState(false)
-  const [loginError, setLoginError] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [redirectAfterLogin, setRedirectAfterLogin] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const auth = useAuth()
-  const { register, handleSubmit, errors } = useForm<FormData>()
-  const { container, form, submitButton, error, textField } = useStyles()
+  const auth = useAuth();
+  const { register, handleSubmit, errors } = useForm<FormData>();
+  const { container, form, submitButton, error, textField } = useStyles();
 
   const onSubmit = async (data: FormData) => {
     try {
-      setLoginError(false)
-      setLoading(true)
-      const response = await publicFetch.post('users/login', data)
+      setLoginError(false);
+      setLoading(true);
+      const response = await publicFetch.post('users/login', data);
       if (response && response.data) {
         auth.setAuthState({
           token: response.data.idToken,
@@ -78,15 +78,15 @@ const Login = () => {
             displayName: response.data.displayName,
             email: response.data.email,
           },
-        })
+        });
       }
-      setLoading(false)
-      setRedirectAfterLogin(true)
+      setLoading(false);
+      setRedirectAfterLogin(true);
     } catch (err) {
-      setLoading(false)
-      setLoginError(true)
+      setLoading(false);
+      setLoginError(true);
     }
-  }
+  };
 
   return (
     <>
@@ -135,10 +135,7 @@ const Login = () => {
                 fullWidth
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
+                    <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)}>
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
@@ -153,7 +150,7 @@ const Login = () => {
         </form>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
