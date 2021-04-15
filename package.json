@@ -33,8 +33,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --color --fix",
-    "format": "prettier --write \"**/*.+(js|ts|tsx|jsx|json|scss|css|md)\"",
-    "isready": "npm run format && npm run lint && npm run build"
+    "format": "prettier --write \"**/*.+(js|ts|tsx|jsx|json|scss|css|md)\""
   },
   "eslintConfig": {
     "extends": "react-app"

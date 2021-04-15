@@ -40,7 +40,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     expiresIn,
     userInfo: userInfo ? JSON.parse(userInfo) : {},
   })
-  // eslint-disable-next-line @typescript-eslint/no-shadow
+  // eslint-disable-next-line
   const setAuthInfo = ({ token, userInfo, expiresIn }: AuthInfo) => {
     if (token && expiresIn && userInfo) {
       localStorage.setItem('token', token)

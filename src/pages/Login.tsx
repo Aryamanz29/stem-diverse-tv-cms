@@ -82,7 +82,7 @@ const Login = () => {
       }
       setLoading(false)
       setRedirectAfterLogin(true)
-    } catch (error) /* eslint-disable-line @typescript-eslint/no-shadow */ {
+    } catch (err) {
       setLoading(false)
       setLoginError(true)
     }

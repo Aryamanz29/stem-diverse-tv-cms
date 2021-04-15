@@ -111,14 +111,14 @@ const Register = () => {
         setRegisterationStatus(response.data.message)
       }
       setLoading(false)
-    } catch (error) /* eslint-disable-line @typescript-eslint/no-shadow */ {
+    } catch (err) {
       setLoading(false)
 
-      if (error.response !== undefined) {
-        setRegisterationStatus(error.response.data.message)
-        setRegisterationStatusCode(error.response.data.status)
-      } else if (error.message !== undefined) {
-        setRegisterationStatus(error.message)
+      if (err.response !== undefined) {
+        setRegisterationStatus(err.response.data.message)
+        setRegisterationStatusCode(err.response.data.status)
+      } else if (err.message !== undefined) {
+        setRegisterationStatus(err.message)
         setRegisterationStatusCode(450)
       }
     }
